@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_app"
+    app:startDestination="@id/login2">
+
+    <fragment
+        android:id="@+id/login"
+        android:name="com.example.medicinesapp.notYet.login.LoginFragment">
+    </fragment>
+
+    <fragment
+        android:id="@+id/register"
+        android:name="com.example.medicinesapp.auth.register.RegisterFragment">
+        <action
+            android:id="@+id/action_register_to_login"
+            app:destination="@id/login2" />
+        <action
+            android:id="@+id/action_register_to_dashboard"
+            app:destination="@id/second_level" />
+    </fragment>
+
+    <fragment android:id="@+id/login2"
+        android:name="com.example.medicinesapp.auth.login.Login2Fragment">
+        <action
+            android:id="@+id/action_login_to_register"
+            app:destination="@id/register" />
+        <action
+            android:id="@+id/action_login_to_dashboard"
+            app:destination="@id/second_level" />
+    </fragment>
+
+    <navigation
+        android:id="@+id/second_level"
+        app:startDestination="@id/dashboard">
+
+    <fragment
+        android:id="@+id/dashboard"
+        android:name="com.example.medicinesapp.ui.DashboardFragment">
+        <action
+            android:id="@+id/action_dashboard_to_login"
+            app:destination="@id/login2"
+            app:popUpTo="@id/login2" />
+        <action
+            android:id="@+id/action_dashboard_to_barcode_reader"
+            app:destination="@id/barcode_reader" />
+        <action
+            android:id="@+id/action_dashboard_to_friendsFragment"
+            app:destination="@id/friendsFragment" />
+        <action
+            android:id="@+id/action_dashboard_to_warehouse"
+            app:destination="@id/warehouse" />
+        <action
+            android:id="@+id/action_dashboard_to_allPills"
+            app:destination="@id/allPills" />
+        <action
+            android:id="@+id/action_dashboard_to_mainAdd"
+            app:destination="@id/mainAdd" />
+        <action
+            android:id="@+id/action_dashboard_to_myPills"
+            app:destination="@id/myPills" />
+
+    </fragment>
+
+    <dialog
+        android:id="@+id/ringing"
+        android:name="com.example.medicinesapp.social.videoChat.ringing.RingingFragment">
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="medicineApp://startChat.com/{id}" />
+        <argument
+            android:name="id"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_ringing_to_videoChat"
+            app:destination="@id/videoChat" />
+    </dialog>
+
+    <fragment
+        android:id="@+id/paint"
+        android:name="com.example.medicinesapp.notYet.PaintFragment" />
+
+    <fragment
+        android:id="@+id/barcode_reader"
+        android:name="com.example.medicinesapp.social.barcode.BarcodeReadFragment" >
+
+        <argument
+            android:name="friendsID"
+            app:argType="string[]"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/reactive"
+        android:name="com.example.medicinesapp.notYet.firestore.MainFragment" />
+
+    <fragment
+        android:id="@+id/myPills"
+        android:name="com.example.medicinesapp.organizer.myPills.MyPillsFragment" />
+
+
+    <fragment
+        android:id="@+id/scannAdd"
+        android:name="com.example.medicinesapp.adding.scanner.ScanAdd">
+
+    </fragment>
+
+    <dialog
+        android:id="@+id/dateDialog"
+        android:name="com.example.medicinesapp.adding.dialogs.DateDialog">
+
+        <argument
+            android:name="hour"
+            app:argType="string" />
+
+    </dialog>
+
+    <fragment
+        android:id="@+id/mainAdd"
+        android:name="com.example.medicinesapp.adding.steps.MainAddingFragment">
+        <action
+            android:id="@+id/action_mainAdd_to_dateDialog"
+            app:destination="@id/dateDialog" />
+        <action
+            android:id="@+id/action_mainAdd_to_customDialog"
+            app:destination="@id/customDialog" />
+        <action
+            android:id="@+id/action_mainAdd_to_noDays"
+            app:destination="@id/noDays" />
+        <action
+            android:id="@+id/action_mainAdd_to_priceFragment"
+            app:destination="@id/priceFragment" />
+        <action
+            android:id="@+id/action_mainAdd_to_prevPills"
+            app:destination="@id/prevPills" />
+        <action
+            android:id="@+id/action_mainAdd_to_scannAdd"
+            app:destination="@id/scannAdd" />
+        <action
+            android:id="@+id/action_mainAdd_to_dashboard"
+            app:popUpTo="@id/mainAdd"
+            app:popUpToInclusive="true"
+            app:destination="@id/dashboard" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/customDialog"
+        android:name="com.example.medicinesapp.adding.dialogs.CustomDialog" />
+
+    <dialog
+        android:id="@+id/noDays"
+        android:name="com.example.medicinesapp.adding.dialogs.NumberOfDaysDialog">
+
+        <argument
+            android:name="date"
+            app:argType="long" />
+
+    </dialog>
+
+
+    <fragment
+        android:id="@+id/allPills"
+        android:name="com.example.medicinesapp.organizer.allPills.AllPillsFragment">
+        <action
+            android:id="@+id/action_allPills_to_bottomSheet"
+            app:destination="@id/bottomSheet" />
+        <action
+            android:id="@+id/action_allPills_to_allPillsDetail"
+            app:destination="@id/allPillsDetail" />
+        <action
+            android:id="@+id/action_allPills_to_myPills"
+            app:destination="@id/myPills" />
+
+        <argument
+            android:name="friendID"
+            app:argType="string"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/priceFragment"
+        android:name="com.example.medicinesapp.warehouse.adding.InternetPriceFragment">
+
+        <argument
+            android:name="ids"
+            app:argType="string[]" />
+
+        <action
+            android:id="@+id/action_priceFragment_to_internetDialog"
+            app:destination="@id/internetDialog" />
+        <action
+            android:id="@+id/action_priceFragment_to_prevPills"
+            app:destination="@id/prevPills" />
+        <action
+            android:id="@+id/action_priceFragment_to_customOrganizer"
+            app:destination="@id/customOrganizer" />
+        <action
+            android:id="@+id/action_priceFragment_to_dashboard"
+            app:destination="@id/dashboard" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/internetDialog"
+        android:name="com.example.medicinesapp.warehouse.adding.InternetDialog">
+
+        <argument
+            android:name="myArgs"
+            app:argType="string[]" />
+
+    </dialog>
+
+    <fragment
+        android:id="@+id/proba"
+        android:name="com.example.medicinesapp.ProbaFragment" />
+
+    <fragment
+        android:id="@+id/videoChat"
+        android:name="com.example.medicinesapp.social.videoChat.VideoChatFragment">
+
+        <argument
+            android:name="calling"
+            app:argType="string" />
+
+        <argument
+            android:name="makeCall"
+            app:argType="string"/>
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/friendsFragment"
+        android:name="com.example.medicinesapp.social.FriendsFragment" >
+        <action
+            android:id="@+id/action_friendsFragment_to_videoChat"
+            app:destination="@id/videoChat" />
+        <action
+            android:id="@+id/action_friendsFragment_to_barcode_reader"
+            app:destination="@id/barcode_reader" />
+        <action
+            android:id="@+id/action_friendsFragment_to_allPills"
+            app:destination="@id/allPills" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/bottomSheet"
+        android:name="com.example.medicinesapp.organizer.utills.MyBottomSheet" />
+
+    <fragment
+        android:id="@+id/allPillsDetail"
+        android:name="com.example.medicinesapp.organizer.allPills.detail.AllPillsDetailFragment">
+
+        <argument
+            android:name="pill"
+            app:argType="com.example.medicinesapp.data.AllPillsFragmentData" />
+
+        <argument
+            android:name="color"
+            app:argType="integer" />
+
+        <argument
+            android:name="fromFirebase"
+            app:argType="boolean"/>
+
+        <argument android:name="friendID"
+            app:argType="string"/>
+
+    </fragment>
+
+    <dialog
+        android:id="@+id/prevPills"
+        android:name="com.example.medicinesapp.adding.dialogs.PrevPillsDialog"/>
+
+        <fragment android:id="@+id/warehouse"
+            android:name="com.example.medicinesapp.warehouse.WarehouseFragment">
+            <action
+                android:id="@+id/action_warehouse_to_warehouseDetail"
+                app:destination="@id/warehouseDetail" />
+            <action
+                android:id="@+id/action_warehouse_to_priceFragment"
+                app:destination="@id/priceFragment" />
+        </fragment>
+
+
+        <fragment android:id="@+id/warehouseDetail"
+            android:name="com.example.medicinesapp.warehouse.detail.WarehouseDetailFragment">
+
+            <argument android:name="organizer"
+                app:argType="com.example.medicinesapp.data.PillOrganizerManager"/>
+        </fragment>
+
+        <dialog android:id="@+id/customOrganizer"
+            android:name="com.example.medicinesapp.warehouse.adding.OwnDialog"/>
+
+    </navigation>
+
+</navigation>
+
+

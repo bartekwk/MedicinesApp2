@@ -1,0 +1,19 @@
+ syntax = "proto3";
+
+ option java_package = "com.example.medicinesapp";
+ option java_multiple_files = true;
+
+ message CurrentUser {
+   string uid = 1;
+   string name = 2;
+   string email=3;
+   bool isDoctor=4;
+   int64 lastActive=5;
+   bool isOnline=6;
+ }
+
+message UserLogin {
+  string mail = 1;
+  string password = 2;
+  bool isChecked = 3;
+}

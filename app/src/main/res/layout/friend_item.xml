@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="friend"
+            type="com.example.medicinesapp.data.UserBothChecked" />
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="300dp"
+        android:clickable="true"
+        android:onClick="@{clickListener}"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            app:shapeAppearance="@style/MySuperShapeAppearance.App.MediumComponent"
+            app:strokeWidth="2dp"
+            app:strokeColor="@color/black"
+            app:cardBackgroundColor="@color/one"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="wrap_content">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/text"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintHorizontal_bias="0.55"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="@{friend.name}"
+                    android:textSize="24sp"
+                    android:textColor="@color/white"
+                    tools:text = "Adam"/>
+                <TextView
+                    android:id="@+id/accountType"
+                    android:textColor="@color/white"
+                    app:layout_constraintTop_toTopOf="@id/image3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toEndOf="@id/image3"
+                    app:layout_constraintBottom_toBottomOf="@id/image3"
+                    android:layout_marginStart="18dp"
+                    android:text="Konto lekarza"/>
+
+                <ImageView
+                    android:id="@+id/image3"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/text"
+                    android:layout_marginStart="14dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@id/image"
+                    android:textSize="14sp"
+                    android:src="@drawable/ic_account"
+                    android:textColor="@color/black"
+                    tools:text = "KONTO : pacjent"/>
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:layout_width="wrap_content"
+                    android:checked="@{friend.isChecked}"
+                    android:id="@+id/switcher"
+                    app:layout_constraintVertical_bias="0"
+                    app:layout_constraintTop_toBottomOf="@id/image2"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@id/image"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:translationY="-5dp"/>
+                <TextView
+                    android:translationY="-5dp"
+                    android:id="@+id/switcherText"
+                    android:textColor="@color/white"
+                    app:layout_constraintTop_toTopOf="@id/switcher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toEndOf="@id/switcher"
+                    app:layout_constraintBottom_toBottomOf="@id/switcher"
+                    android:layout_marginStart="2dp"
+                    android:text="Widzi twoje lekarstwa"/>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="80dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:id="@+id/image"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="20dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="@color/white"
+                    android:src="@drawable/ic_doctorm"/>
+
+                <TextView
+                    android:id="@+id/visibility"
+                    android:alpha="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/image"
+                    app:layout_constraintStart_toStartOf="@id/image"
+                    app:layout_constraintEnd_toEndOf="@id/image"
+                    android:layout_marginTop="5dp"
+                    android:textSize="11sp"
+                    android:textColor="@color/white"
+                    android:text="Leki widoczne"/>
+
+                <ImageView
+                    android:id="@+id/image2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/image3"
+                    app:layout_constraintStart_toEndOf="@id/image"
+                    android:layout_marginStart="15dp"
+                    android:src="@drawable/ic_record"/>
+
+                <TextView
+                    android:id="@+id/online"
+                    android:textColor="@color/white"
+                    app:layout_constraintTop_toTopOf="@id/image2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toEndOf="@id/image2"
+                    app:layout_constraintBottom_toBottomOf="@id/image2"
+                    android:layout_marginStart="18dp"
+                    android:text="Niedostępna"/>
+
+                <ImageView
+                    android:clickable="true"
+                    android:id="@+id/call"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_margin="15dp"
+                    android:src="@drawable/ic_outgoing_call"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

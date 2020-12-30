@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="5dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="pill"
+            type="com.example.medicinesapp.data.DailyPill" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:cardBackgroundColor="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+                <TextView
+                    android:id="@+id/txt1"
+                    app:layout_constraintStart_toEndOf="@id/img"
+                    app:layout_constraintTop_toTopOf="@id/img"
+                    app:layout_constraintBottom_toBottomOf="@id/img"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_margin="10dp"
+                    android:textSize="21sp"
+                    tools:text = "09:21"
+                    android:layout_height="wrap_content"
+                    android:text="@{pill.time}"/>
+
+                <ImageView
+                    android:id="@+id/img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:src="@drawable/klok"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"/>
+
+                <TextView
+                    android:id="@+id/txt2"
+                    app:layout_constraintStart_toEndOf="@id/img2"
+                    app:layout_constraintTop_toTopOf="@id/img2"
+                    app:layout_constraintBottom_toBottomOf="@id/img2"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="10dp"
+                    android:textSize="21sp"
+                    tools:text = "3"
+                    android:layout_height="wrap_content"
+                    valueDoubleToString="@{pill.amount}"/>
+
+                <TextView
+                    android:id="@+id/txt3"
+                    app:layout_constraintStart_toEndOf="@id/txt2"
+                    app:layout_constraintTop_toTopOf="@id/txt2"
+                    app:layout_constraintBottom_toBottomOf="@id/txt2"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="5dp"
+                    android:textSize="21sp"
+                    tools:text = "sztuki"
+                    android:text="sztuki"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/img2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/txt1"
+                    android:src="@drawable/ic_pll"
+                    android:layout_marginStart="55dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

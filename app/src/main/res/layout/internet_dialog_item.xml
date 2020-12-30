@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="pill"
+            type="com.example.medicinesapp.data.PillDB" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="140dp"
+        android:id="@+id/card"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardBackgroundColor="@color/two">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nazwa leku: "
+                android:textColor="@color/black"
+                android:id="@+id/namePill"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/nameOfPill"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/namePill"
+                app:layout_constraintBottom_toBottomOf="@id/namePill"
+                app:layout_constraintStart_toEndOf="@id/namePill"
+                android:layout_marginStart="40dp"
+                android:textColor="@color/black"
+                android:text="@{pill.name}"/>
+
+            <TextView
+                android:textColor="@color/black"
+                android:id="@+id/namePill2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/namePill"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="10dp"
+                android:text="Dni dawkowania:"/>
+
+            <TextView
+                android:id="@+id/start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/namePill2"
+                app:layout_constraintBottom_toBottomOf="@id/namePill2"
+                app:layout_constraintStart_toEndOf="@id/namePill2"
+                android:layout_marginStart="13dp"
+                android:textColor="@color/black"
+                android:text="@{pill.dayStart}"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/start"
+                app:layout_constraintBottom_toBottomOf="@id/start"
+                app:layout_constraintStart_toEndOf="@id/start"
+                android:layout_marginStart="15dp"
+                android:textColor="@color/black"
+                android:text="@{pill.dayEnd}"/>
+
+            <TextView
+                android:textColor="@color/black"
+                android:id="@+id/namePill3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/namePill2"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="10dp"
+                android:text="Łącznie dawek"/>
+
+            <TextView
+                android:id="@+id/sum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toTopOf="@id/namePill3"
+                app:layout_constraintBottom_toBottomOf="@id/namePill3"
+                app:layout_constraintStart_toEndOf="@id/namePill3"
+                android:layout_marginStart="26dp"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="background">#203354</color>
+    <color name="white">#FFFFFF</color>
+    <color name="dark">#0F1840</color>
+    <color name="black">#000000</color>
+    <color name="colorPaint">#FFFFEB3B</color>
+    <color name="colorBackground">#FFFF5500</color>
+    <color name="colorMyPrimaryDark">#512DA8</color>
+    <color name="colorSecondaryText">#757575</color>
+    <color name="abcd">#0C74A4</color>
+    <color name="myGray">#A9A9A9</color>
+    <color name="one">#2D4D58</color>
+    <color name = "two">#E2E4E4</color>
+    <color name="o">#F6D272</color>
+    <color name="t">#3FF386</color>
+    <color name = "th">#93CEE5</color>
+    <color name="fun1">#0C3B2E</color>
+    <color name="fun2">#6D9773</color>
+    <color name="my1">#40696b</color>
+    <color name="abcdE">#191835</color>
+    <color name="q">#476880</color>
+    <color name="p">#364957</color>
+    <color name="p1">#182833</color>
+    <color name="p2">#247EAC</color>
+    <color name="p3">#58626A</color>
+    <color name="p4">#57999D</color>
+    <color name="p5">#BBBBBB</color>
+    <color name="meine">#80FFFFFF</color>
+    <color name="nas">#92F7A5</color>
+    <color name="nie">#C2D6D7</color>
+
+    <color name="example_5_page_bg_color">#0E0E0E</color>
+    <color name="example_5_item_view_bg_color">#1B1B1B</color>
+    <color name="example_5_toolbar_color">#282828</color>
+    <color name="example_5_text_grey">#bdbdbd</color>
+    <color name="example_5_text_grey_light">#616161</color>
+    <color name="brown_700">#5D4037</color>
+    <color name="blue_grey_700">#455A64</color>
+
+
+    <color name = "siema">#D9E4E7</color>
+
+    <color name = "elo">#F1F1F1</color>
+    <color name="grayish">#E2E2E2</color>
+
+    <color name="mainBackground">#528da3</color>
+    <color name="proba">#B2B2B2</color>
+
+    <color name="newColor">#f2f2f2 </color>
+
+    <color name = "uno">#527D7F</color>
+    <color name = "dos">#99B7B8</color>
+    <color name = "tres">#D4E4E7</color>
+    <color name = "quatro">#F6F7EB</color>
+
+</resources>

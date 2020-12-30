@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MedicinesApp</string>
+    <string name="card_transition_name">_card_%1$s</string>
+    <string name="text_transition_name">_text_%1$s</string>
+    <string name ="card_detail">card_detail</string>
+    <string name="card_transition_name2">_card2_%1$s</string>
+</resources>

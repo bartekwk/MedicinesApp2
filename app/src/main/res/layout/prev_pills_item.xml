@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="pill"
+            type="com.example.medicinesapp.data.PrevPill" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:id="@+id/card"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/header"
+                android:textSize="25sp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppinsbold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="@{pill.name}"
+                tools:text = "Apap"/>
+
+            <ImageView
+                android:id="@+id/image1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/header"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/ic_calendar"/>
+
+            <TextView
+                android:id="@+id/text11"
+                android:textSize="13sp"
+                android:text="Dni dawkowania:"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toTopOf="@id/image1"
+                app:layout_constraintBottom_toBottomOf="@id/image1"
+                app:layout_constraintStart_toEndOf="@id/image1"
+                android:layout_marginStart="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                dateStart="@{pill.dayStart}"
+                dateEnd="@{pill.dayEnd}"
+                app:layout_constraintTop_toTopOf="@id/text11"
+                app:layout_constraintBottom_toBottomOf="@id/text11"
+                app:layout_constraintStart_toEndOf="@id/text11"
+                android:layout_marginStart="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+            <ImageView
+                android:id="@+id/image2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/image1"
+                app:layout_constraintEnd_toEndOf="@id/image1"
+                app:layout_constraintTop_toBottomOf="@id/image1"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/ic_medical_pill_outline"/>
+
+            <TextView
+                android:text="Pojedyncza dawka :"
+                android:textSize="13sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text21"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toTopOf="@id/image2"
+                app:layout_constraintBottom_toBottomOf="@id/image2"
+                app:layout_constraintStart_toEndOf="@id/image2"
+                android:layout_marginStart="8dp"/>
+
+            <TextView
+                app:layout_constraintTop_toTopOf="@id/text21"
+                app:layout_constraintBottom_toBottomOf="@id/text21"
+                app:layout_constraintStart_toEndOf="@id/text21"
+                android:layout_marginStart="5dp"
+                android:id="@+id/amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+            <ImageView
+                android:id="@+id/image3"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                app:layout_constraintStart_toStartOf="@id/image2"
+                app:layout_constraintEnd_toEndOf="@id/image2"
+                app:layout_constraintTop_toBottomOf="@id/image2"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/ic_doctor"/>
+
+            <TextView
+                android:textSize="13sp"
+                android:text="Osoba wystawiająca:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text31"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toTopOf="@id/image3"
+                app:layout_constraintBottom_toBottomOf="@id/image3"
+                app:layout_constraintStart_toEndOf="@id/image3"
+                android:layout_marginStart="8dp"/>
+
+            <TextView
+                android:id="@+id/person"
+                app:layout_constraintTop_toTopOf="@id/text31"
+                app:layout_constraintBottom_toBottomOf="@id/text31"
+                app:layout_constraintStart_toEndOf="@id/text31"
+                android:layout_marginStart="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+            <ImageView
+                android:id="@+id/image4"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                app:layout_constraintStart_toStartOf="@id/image3"
+                app:layout_constraintEnd_toEndOf="@id/image3"
+                app:layout_constraintTop_toBottomOf="@id/image3"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/ic_clock"/>
+
+            <TextView
+                android:textSize="13sp"
+                android:text="Godziny dawkowania : "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text41"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toTopOf="@id/image4"
+                app:layout_constraintBottom_toBottomOf="@id/image4"
+                app:layout_constraintStart_toEndOf="@id/image4"
+                android:layout_marginStart="8dp"/>
+
+            <TextView
+                android:id="@+id/hour"
+                android:scrollbars="vertical"
+                android:maxLines="2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/text41"
+                app:layout_constraintBottom_toBottomOf="@id/text41"
+                app:layout_constraintStart_toEndOf="@id/text41"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+
+            <ImageView
+                android:id="@+id/image5"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                app:layout_constraintStart_toStartOf="@id/image4"
+                app:layout_constraintEnd_toEndOf="@id/image4"
+                app:layout_constraintTop_toBottomOf="@id/image4"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:src="@drawable/ic_clipboards"/>
+
+            <TextView
+
+                android:textSize="13sp"
+                android:text="Dodatkowe informacje : "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text51"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toTopOf="@id/image5"
+                app:layout_constraintBottom_toBottomOf="@id/image5"
+                app:layout_constraintStart_toEndOf="@id/image5"
+                android:layout_marginStart="8dp"/>
+
+
+            <TextView
+                android:id="@+id/additional"
+                android:scrollbars="vertical"
+                android:maxLines="2"
+                app:layout_constraintTop_toTopOf="@id/text51"
+                app:layout_constraintBottom_toBottomOf="@id/text51"
+                app:layout_constraintStart_toEndOf="@id/text51"
+                android:layout_marginStart="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

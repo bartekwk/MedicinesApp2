@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+
+        <import type="com.example.medicinesapp.data.FromInternet"/>
+        <import type="android.os.Bundle"/>
+
+        <variable
+            name="wrapper"
+            type="com.example.medicinesapp.data.FromInternetWrapper" />
+
+        <variable
+            name="clickListener"
+            type="com.example.medicinesapp.utill.listeners.ViewPagerItemClickListener&lt;Bundle>" />
+
+        <variable
+            name="doseLeft"
+            type="int" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        android:id="@+id/recyclerView"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        setItems="@{wrapper.fromInternets}"
+        setItemListener="@{clickListener}"
+        doseLeft="@{doseLeft}"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

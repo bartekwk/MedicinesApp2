@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "94804240497",
+    "firebase_url": "https://medicinesapp-d3c19.firebaseio.com",
+    "project_id": "medicinesapp-d3c19",
+    "storage_bucket": "medicinesapp-d3c19.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:94804240497:android:2a0039afd273e1144093d0",
+        "android_client_info": {
+          "package_name": "com.example.medicinesapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "94804240497-a5umfuq8etoe56vbcjuh8j0rrb6kqu12.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9MZXdYacPsp9r9k7jXE6l-p9nMShac70"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "94804240497-a5umfuq8etoe56vbcjuh8j0rrb6kqu12.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        app:layoutDescription="@xml/dashboard_scene"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_marginTop="15dp"
+            android:textSize="22sp"
+            android:fontFamily="@font/poppinsbold"
+            android:textColor="@color/black"
+            android:elevation="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DOMOWA APTEKA"
+            android:id="@+id/text"
+            app:layout_constraintTop_toTopOf="@id/card"
+            app:layout_constraintStart_toStartOf="@id/card" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:id="@+id/card"
+            app:strokeColor="@color/p3"
+            app:strokeWidth="1dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="210dp">
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_marginTop="5dp"
+            android:id="@+id/animationView"
+            android:elevation="3dp"
+            app:layout_constraintTop_toTopOf="@id/card"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="240dp"
+            android:layout_height="240dp"
+            app:lottie_rawRes="@raw/three"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"/>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/scroll"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="15dp"
+                    app:cardBackgroundColor="@color/mainBackground"
+                    app:shapeAppearance="@style/MySuperShapeAppearance.App.MediumComponent"
+                    android:layout_height="115dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/mcv2"
+                    android:id="@+id/mcv1">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:padding="10dp"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:id="@+id/mcv1Image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                           app:layout_constraintEnd_toEndOf="parent"
+                            android:src="@drawable/ic_aa"/>
+                        <TextView
+                            android:textColor="@color/white"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center"
+                            android:id="@+id/mcv1Text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toBottomOf="@id/mcv1Image"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:text="Wszystkie leki"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_marginTop="20dp"
+                    app:cardBackgroundColor="@color/mainBackground"
+                    app:shapeAppearance="@style/MySuperShapeAppearance.App.MediumComponent"
+                    android:layout_height="115dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/mcv1"
+                    app:layout_constraintEnd_toStartOf="@id/mcv3"
+                    android:id="@+id/mcv2">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:padding="10dp"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:id="@+id/mcv2Image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:src="@drawable/ic_bb"/>
+                        <TextView
+                            android:textColor="@color/white"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center"
+                            android:id="@+id/mcv2Text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toBottomOf="@id/mcv2Image"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:text="Kalendarz\ndawkowań"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:cardBackgroundColor="@color/mainBackground"
+                    app:shapeAppearance="@style/MySuperShapeAppearance.App.MediumComponent"
+                    android:layout_height="115dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/mcv2"
+                    android:id="@+id/mcv3">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:padding="10dp"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:id="@+id/mcv3Image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:src="@drawable/ic_cc"/>
+                        <TextView
+                            android:textColor="@color/white"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center"
+                            android:id="@+id/mcv3Text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toBottomOf="@id/mcv3Image"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:text="Zapas  leków"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/mcv"
+                    app:layout_constraintEnd_toEndOf="@id/mcv"
+                    app:layout_constraintBottom_toTopOf="@id/mcv"
+                    app:layout_constraintHorizontal_bias="0"
+                    android:layout_marginBottom="5dp"
+                    android:textColor="@color/black"
+                    android:text="Następne lekarstwo"/>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcv"
+                    android:elevation="20dp"
+                    android:layout_width="0dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:shapeAppearance="@style/MySuperShapeAppearance.App.MediumComponent"
+                    app:strokeColor="@color/grayish"
+                    app:strokeWidth="1dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/mcv1"
+                    android:layout_marginTop="45dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_height="wrap_content">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:padding="10dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="20dp"
+                            android:textColor="@color/black"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:id="@+id/name"
+                            android:fontFamily="@font/poppinsbold" />
+
+                        <ImageView
+                            android:id="@+id/image1"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/name"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginStart="8dp"
+                            android:src="@drawable/ic_clock"/>
+
+                        <TextView
+                            android:textSize="13sp"
+                            android:text="Czas dawkowania : "
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/text11"
+                            android:textColor="@color/black"
+                            app:layout_constraintTop_toTopOf="@id/image1"
+                            app:layout_constraintBottom_toBottomOf="@id/image1"
+                            app:layout_constraintStart_toEndOf="@id/image1"
+                            android:layout_marginStart="8dp"/>
+
+                        <TextView
+                            android:id="@+id/timeSingle"
+                            android:scrollbars="vertical"
+                            android:maxLines="2"
+                            app:layout_constraintTop_toTopOf="@id/text11"
+                            app:layout_constraintBottom_toBottomOf="@id/text11"
+                            app:layout_constraintStart_toEndOf="@id/text11"
+                            android:layout_marginStart="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <ImageView
+                            android:id="@+id/image2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintStart_toStartOf="@id/image1"
+                            app:layout_constraintEnd_toEndOf="@id/image1"
+                            app:layout_constraintTop_toBottomOf="@id/image1"
+                            android:layout_marginTop="15dp"
+                            android:src="@drawable/ic_medical_pill_outline"/>
+
+                        <TextView
+                            android:text="Pojedyncza dawka :"
+                            android:textSize="13sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/text21"
+                            android:textColor="@color/black"
+                            app:layout_constraintTop_toTopOf="@id/image2"
+                            app:layout_constraintBottom_toBottomOf="@id/image2"
+                            app:layout_constraintStart_toEndOf="@id/image2"
+                            android:layout_marginStart="8dp"/>
+                        <TextView
+                            android:id="@+id/single"
+                            android:scrollbars="vertical"
+                            android:maxLines="2"
+                            app:layout_constraintTop_toTopOf="@id/text21"
+                            app:layout_constraintBottom_toBottomOf="@id/text21"
+                            app:layout_constraintStart_toEndOf="@id/text21"
+                            android:layout_marginStart="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <ImageView
+                            android:id="@+id/image3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintStart_toStartOf="@id/image2"
+                            app:layout_constraintEnd_toEndOf="@id/image2"
+                            app:layout_constraintTop_toBottomOf="@id/image2"
+                            android:layout_marginTop="15dp"
+                            android:src="@drawable/ic_clipboards"/>
+
+                        <TextView
+                            android:text="Dodatkowe informacje :"
+                            android:textSize="13sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/text31"
+                            android:textColor="@color/black"
+                            app:layout_constraintTop_toTopOf="@id/image3"
+                            app:layout_constraintBottom_toBottomOf="@id/image3"
+                            app:layout_constraintStart_toEndOf="@id/image3"
+                            android:layout_marginStart="8dp"/>
+                        <TextView
+                            android:id="@+id/additional"
+                            android:scrollbars="vertical"
+                            android:maxLines="2"
+                            app:layout_constraintTop_toTopOf="@id/text31"
+                            app:layout_constraintBottom_toBottomOf="@id/text31"
+                            app:layout_constraintStart_toEndOf="@id/text31"
+                            android:layout_marginStart="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <LinearLayout
+                            android:id="@+id/linear"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="10dp"
+                            app:layout_constraintTop_toBottomOf="@id/image3"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/left"
+                                android:textStyle="bold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:text="Pozostało" />
+                            <TextView
+                                android:layout_marginStart="10dp"
+                                android:textStyle="bold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:id="@+id/time"/>
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="70dp"
+                    app:layout_constraintEnd_toStartOf="@id/mcv5"
+                    app:cardBackgroundColor="@color/mainBackground"
+                    app:shapeAppearance="@style/MySuperShapeAppearance.App.MediumComponent"
+                    android:layout_height="115dp"
+                    app:layout_constraintTop_toBottomOf="@id/mcv"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:id="@+id/mcv4">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:padding="10dp"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:id="@+id/mcv4Image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:src="@drawable/ic_dd"/>
+                        <TextView
+                            android:textColor="@color/white"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center"
+                            android:id="@+id/mcv4Text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toBottomOf="@id/mcv4Image"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:text="Znajomi"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="70dp"
+                    android:layout_marginStart="15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:cardBackgroundColor="@color/mainBackground"
+                    app:shapeAppearance="@style/MySuperShapeAppearance.App.MediumComponent"
+                    android:layout_height="115dp"
+                    app:layout_constraintTop_toBottomOf="@id/mcv"
+                    app:layout_constraintStart_toEndOf="@id/mcv4"
+                    android:id="@+id/mcv5">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:padding="10dp"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:id="@+id/mcv5Image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:layout_marginTop="5dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:src="@drawable/ic_ee"/>
+                        <TextView
+                            android:textColor="@color/white"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center"
+                            android:id="@+id/mcv5Text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toBottomOf="@id/mcv5Image"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:text="Dodaj lek"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+
+</layout>

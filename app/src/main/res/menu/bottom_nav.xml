@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/myPills"
+        android:title="kalendarz"
+        android:icon="@drawable/ic_acalendar"/>
+
+    <item
+        android:id="@+id/dashboard"
+        android:icon="@drawable/ic_ahome"
+        android:title="menu"/>
+
+    <item
+        android:id="@+id/warehouse"
+        android:title="zapas"
+        android:icon="@drawable/ic_uno"/>
+
+</menu>

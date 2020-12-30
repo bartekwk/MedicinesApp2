@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="pill"
+            type="com.example.medicinesapp.data.AllPillsFragmentData" />
+        <variable
+            name="color"
+            type="int" />
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.google.android.material.card.MaterialCardView
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/mcv"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="10dp"
+            app:cardBackgroundColor="@{color}"
+            android:onClick="@{clickListener}"
+            android:transitionName="@{@string/card_transition_name(pill.id)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:textAlignment="center"
+                    android:layout_height="26dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="15dp"
+                    android:text="@{pill.name}"
+                    android:textSize="20sp"
+                    tools:text="Apap"
+                    android:textColor="@color/white"/>
+                <TextView
+                    android:textColor="@color/white"
+                    android:layout_marginBottom="2dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/progress_one"
+                    app:layout_constraintEnd_toEndOf="@id/progress_one"
+                    app:layout_constraintBottom_toTopOf="@id/progress_one"
+                    allTxtInt="@{pill.doseLeft}"
+                    leftTxtInt="@{pill.doseLeftNow}" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/white"
+                    android:elevation="2dp"
+                    app:layout_constraintVertical_bias="0.45"
+                    app:layout_constraintHorizontal_bias="0.55"
+                    android:layout_marginEnd="10dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/progress_one"
+                    app:layout_constraintBottom_toBottomOf="@id/progress_one"
+                    app:layout_constraintStart_toStartOf="@id/progress_one"
+                    app:layout_constraintEnd_toEndOf="@id/progress_one"
+                    android:textSize="12sp"
+                    android:text="do spożycia"/>
+
+                <ProgressBar
+                    style = "?android:attr/progressBarStyleHorizontal"
+                    android:id="@+id/progress_one"
+                    app:layout_constraintTop_toBottomOf="@id/text"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="40dp"
+                    android:layout_width="170dp"
+                    android:indeterminate="false"
+                    android:progressDrawable="@drawable/res_1"
+                    android:layout_height="25dp"
+                    allInt="@{pill.doseLeft}"
+                    leftInt="@{pill.doseLeftNow}" />
+
+                <TextView
+                    android:id="@+id/organizerText"
+                    android:layout_marginBottom="2dp"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    allTxt="@{pill.leftOrganizer}"
+                    leftTxt="@{pill.leftNowOrganizer}"
+                    app:layout_constraintStart_toStartOf="@id/progress_two"
+                    app:layout_constraintEnd_toEndOf="@id/progress_two"
+                    app:layout_constraintBottom_toTopOf="@id/progress_two"
+                     />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_marginEnd="10dp"
+                    android:elevation="2dp"
+                    app:layout_constraintVertical_bias="0.45"
+                    app:layout_constraintHorizontal_bias="0.55"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/progress_two"
+                    app:layout_constraintBottom_toBottomOf="@id/progress_two"
+                    app:layout_constraintStart_toStartOf="@id/progress_two"
+                    app:layout_constraintEnd_toEndOf="@id/progress_two"
+                    android:textSize="12sp"
+                    android:text="w zapasie"/>
+
+                <ProgressBar
+                    style = "?android:attr/progressBarStyleHorizontal"
+                    android:id="@+id/progress_two"
+                    app:layout_constraintTop_toBottomOf="@id/progress_one"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="30dp"
+                    android:layout_width="170dp"
+                    android:indeterminate="false"
+                    android:progressDrawable="@drawable/res_1"
+                    android:layout_height="25dp"
+                    all = "@{pill.leftOrganizer}"
+                    left = "@{pill.leftNowOrganizer}"
+                    />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="170dp"
+                    android:id="@+id/card"
+                    app:shapeAppearance="@style/MyShapeAppearance.App.MediumComponent"
+                   app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginBottom="20dp"
+                    app:layout_constraintVertical_bias="0.8"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/progress_two"
+                    android:layout_marginTop="30dp"
+                    app:layout_constraintStart_toStartOf="parent">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:padding="10dp"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:textSize="12sp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:id="@+id/date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Koniec dawkowania"/>
+
+                        <ImageView
+                            app:layout_constraintHorizontal_bias="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/date"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:layout_marginStart="10dp"
+                            android:src="@drawable/ic_calendar"/>
+                        <TextView
+                            android:layout_marginTop="7dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/date"
+                            android:text="@{pill.dayEnd}"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="170dp"
+                    android:layout_marginTop="15dp"
+                    app:shapeAppearance="@style/MyShapeAppearance.App.MediumComponent"
+                    android:layout_marginBottom="20dp"
+                    app:layout_constraintTop_toBottomOf="@id/card"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_bias="0.8"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:padding="10dp"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:textSize="12sp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:id="@+id/date2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Osoba wystawiająca"/>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1"
+                            app:layout_constraintStart_toEndOf="@id/date2"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:layout_marginStart="10dp"
+                            android:src="@drawable/ic_doctor"/>
+                        <TextView
+                            android:layout_marginTop="7dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/date2"
+                            android:text="@{pill.doctor}"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
