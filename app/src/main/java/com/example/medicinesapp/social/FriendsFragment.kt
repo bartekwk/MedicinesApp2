@@ -87,7 +87,11 @@ class FriendsFragment:Fragment() {
 
 
         sdf = SimpleDateFormat("yyyy-MM-dd")
+
         newCalendar = Calendar.getInstance()
+
+
+
         stringDate = sdf.format(newCalendar.time)
         newCalendar.add(Calendar.DATE,1)
         stringDateTomorrow = sdf.format(newCalendar.time)
@@ -316,7 +320,8 @@ class FriendsFragment:Fragment() {
                 pill.doctor,
                 temp,
                 null,
-                null)
+                null,
+                pill.amount!!)
         }
     }
 

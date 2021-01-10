@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
@@ -36,6 +37,8 @@ class RingingFragment: DialogFragment() {
     private lateinit var image: ImageView
     private lateinit var stopButton : Swipe_Button_View
     private lateinit var goButton : Swipe_Button_View
+    private lateinit var text: TextView
+    private lateinit var vibrator:Vibrator
 
 
     override fun onCreateView(
@@ -60,11 +63,7 @@ class RingingFragment: DialogFragment() {
             viewModel.getUserById(firebaseID)
             viewModel.getUserPhotoById(firebaseID)
 
-            //vibratePhone()
-
-
-
-
+            vibratePhone()
 
 
             stopButton.setOnSwipeCompleteListener_forward_reverse(object : OnSwipeCompleteListener {
@@ -78,13 +77,13 @@ class RingingFragment: DialogFragment() {
 
             goButton.setOnSwipeCompleteListener_forward_reverse(object : OnSwipeCompleteListener {
                 override fun onSwipe_Forward(swipe_button_view: Swipe_Button_View?) {
-                    val bundle = bundleOf("calling" to videoID)
+                    vibrator.cancel()
+                    val bundle = bundleOf("calling" to ids)
                     findNavController().navigate(R.id.action_ringing_to_videoChat, bundle)
                 }
 
                 override fun onSwipe_Reverse(swipe_button_view: Swipe_Button_View?) {
                 }
-
             })
         }
 
@@ -92,12 +91,12 @@ class RingingFragment: DialogFragment() {
         viewModel.user.observe(viewLifecycleOwner, Observer {
             it?.let {user->
                 Log.d("1", "MAM USERA $user")
+                text.text = user.name
 
                 val path = user.photoPath
                 path?.let {myPath->
                     viewModel.getUserPhotoById(myPath)
                 }
-
             }
         })
 
@@ -116,7 +115,7 @@ class RingingFragment: DialogFragment() {
 
     private fun Fragment.vibratePhone() {
 
-        val vibrator = requireActivity().getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+         vibrator = requireActivity().getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         if (vibrator.hasVibrator()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 val mVibratePattern =
@@ -133,7 +132,7 @@ class RingingFragment: DialogFragment() {
         image = view.findViewById(R.id.image)
         stopButton = view.findViewById(R.id.stop)
         goButton = view.findViewById(R.id.start)
+        text = view.findViewById(R.id.text2)
     }
-
 
 }

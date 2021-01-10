@@ -6,11 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medicinesapp.R
 import com.example.medicinesapp.data.AllPillsFragmentData
-import com.example.medicinesapp.data.PillDB
 import com.example.medicinesapp.databinding.AllPillItemBinding
 import com.example.medicinesapp.utill.listeners.TransitionClickItemListener
 
@@ -61,6 +59,8 @@ class AllViewHolder(private val binding: AllPillItemBinding,private val listener
     }
 
     fun bind(pill:AllPillsFragmentData,color: Int){
+
+        Log.d("1", "JESTEM tu $pill ")
 
 
         this.color = color

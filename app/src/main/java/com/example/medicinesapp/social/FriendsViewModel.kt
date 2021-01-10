@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.medicinesapp.data.FriendIDFirebase
 import com.example.medicinesapp.data.PillFirebase
-import com.example.medicinesapp.data.User
 import com.example.medicinesapp.data.UserBothChecked
 import com.example.medicinesapp.repository.AppRepository
 import io.reactivex.Observable

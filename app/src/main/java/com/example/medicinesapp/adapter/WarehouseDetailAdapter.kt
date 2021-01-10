@@ -1,6 +1,5 @@
 package com.example.medicinesapp.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,27 +34,22 @@ class WarehouseDetailViewHolder(private val binding: WarehouseDetailItemBinding)
 
     fun bind(pill:PillOrganizerDB){
 
-        Log.d("1", "kurwa mac $pill")
-
 
 
         val howMany = (pill.left!! / pill.amount!!).toInt()
-        val priceAll = pill.price!! * pill.amount
+        val priceAllBefore = pill.price!! * pill.amount
+        val priceAllAfter = String.format("%.2f", priceAllBefore).replace(",",".")
+        var left = pill.leftNow
 
-        var leftEnd:Int=0
-
-        if(pill.leftNow!=null){
-            if(pill.leftNow!!>=0){
-                leftEnd = pill.leftNow!!
+        pill.leftNow?.let {
+            if(it == -1000 ){
+                left = 0
             }
-        }else{
-            leftEnd = 0
         }
 
-
         binding.text12.text = "${pill.amount?.toInt()} op. po $howMany szt."
-        binding.text22.text = "$leftEnd sztuk"
-        binding.text23.text = "${pill.price} zł/szt. łącznie: $priceAll zł"
+        binding.text22.text = "$left sztuk"
+        binding.text23.text = "${pill.price} zł/szt. łącznie: $priceAllAfter zł"
 
 
         binding.apply {
@@ -67,5 +61,6 @@ class WarehouseDetailViewHolder(private val binding: WarehouseDetailItemBinding)
     private fun View.setAllAlpha(alpha: Float) {
         if (this is ViewGroup) children.forEach { child -> child.alpha = alpha }
     }
+
 
 }

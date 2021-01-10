@@ -29,5 +29,7 @@ interface PillDao {
     @Query("UPDATE my_pills SET doseLeftNow = :doseLeftNow WHERE id = :id")
     suspend fun updatePillDoseLeftNow(id:String,doseLeftNow:Int)
 
+    @Query("UPDATE my_pills SET doseLeftNow = doseLeft")
+    suspend fun restartUpdatePill():Int
 
 }

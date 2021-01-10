@@ -124,7 +124,7 @@ class AllPillsDetailFragment:Fragment() {
         lifecycleScope.launch {
 
             delay(610)
-
+            binding.delete.alpha = 1.0f
             binding.linearLayout.alpha = 1.0f
 
             val daysOfWeek =
@@ -251,7 +251,6 @@ class AllPillsDetailFragment:Fragment() {
                 }
             }
         }
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

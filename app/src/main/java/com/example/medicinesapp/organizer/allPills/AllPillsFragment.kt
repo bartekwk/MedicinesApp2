@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dingmouren.layoutmanagergroup.skidright.SkidRightLayoutManager
 import com.example.medicinesapp.R
 import com.example.medicinesapp.adapter.AllPillsAdapter
@@ -26,6 +27,7 @@ import com.google.android.material.transition.MaterialElevationScale
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.calendar_meine.*
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -52,7 +54,6 @@ class AllPillsFragment: Fragment() {
 
         friendID = arguments?.getString("friendID")
 
-        viewModel.checkIfNegativeDoseLeftNow()
 
         binding = AllPillFragmentBinding.inflate(inflater,container,false)
 
@@ -151,10 +152,6 @@ class AllPillsFragment: Fragment() {
 
         val calendar  = Calendar.getInstance()
         val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm")
-        val currentDate = sdf.format(Date())
-        val split = currentDate.split(' ')
-        val date = split.first()
-        val hour = split.last()
 
 
         if(firstTime) {
@@ -227,45 +224,32 @@ class AllPillsFragment: Fragment() {
                             if(it.doseLeft!=null){
                                 it.doseLeft = it.doseLeft!! * (it.amount.toInt())
                             }
-                        }
 
+                            it.leftNowOrganizer?.let{left->
+                                if(left<0){
+                                    var result= left
+                                    while(result<0){
+                                        result+=1000
+                                    }
+                                    it.leftNowOrganizer = result
+                                }
+                            }
+                        }
                         pillsListNow.clear()
                         pillsList.clear()
                         pillsListNow.addAll(pills)
+
                         val ok = pills.filter{it.doseLeftNow!=null}.filter { it.doseLeftNow!! >0 }
                         pillsList.addAll(ok)
                         adapter.notifyDataSetChanged()
-                    }
 
-                disposable = viewModel.getAllLeftDoseByIDS(date, hour)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(Schedulers.io())
-                    .subscribe { listDose ->
-                        listDose.forEach { oneDose ->
-                            val dose = oneDose.dose.toInt()
-                            oneDose.amount?.let { amountDoseLeft ->
-                                viewModel.updatePillDoseLeftNow(oneDose.id, amountDoseLeft)
-                                oneDose.doseLeft?.let { amountDoseAll ->
-                                    viewModel.updateOrganizerPillDoseLeftNow(oneDose.id, amountDoseLeft*dose, amountDoseAll*dose)
-                                }
-                            }
+
+                        if(pills.isEmpty()){
+                            recycler.layoutManager = LinearLayoutManager(requireContext())
                         }
                     }
             }
         }
-
-        viewModel.list.observe(viewLifecycleOwner, androidx.lifecycle.Observer {listNegativeAmount->
-
-            listNegativeAmount.forEach {oneOrganizer->
-
-                val id = oneOrganizer.id!!
-                val idPill = oneOrganizer.pillId
-                val amount = kotlin.math.abs(oneOrganizer.leftNow!!)
-
-                viewModel.updateOrganizerPillDoseLeftNowNegativeInOther(idPill,amount)
-                viewModel.markAsUsed(id)
-            }
-        })
 
         binding.first.setOnClickListener {
             findNavController().navigate(R.id.action_allPills_to_bottomSheet)
@@ -292,6 +276,4 @@ class AllPillsFragment: Fragment() {
         super.onResume()
         firstTime = false
     }
-
-
 }

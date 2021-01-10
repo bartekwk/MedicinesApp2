@@ -130,6 +130,7 @@
 
           <com.google.android.material.button.MaterialButton
               android:id="@+id/delete"
+              android:alpha="0"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               app:layout_constraintStart_toStartOf="parent"
@@ -138,8 +139,6 @@
               android:layout_marginTop="20dp"
               android:backgroundTint="@color/black"
               android:text="usuń lek"/>
-
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

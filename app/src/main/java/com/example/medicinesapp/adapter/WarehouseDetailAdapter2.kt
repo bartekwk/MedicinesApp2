@@ -1,6 +1,6 @@
 package com.example.medicinesapp.adapter
 
-import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,10 +50,13 @@ class WarehouseDetailViewHolder2(private val binding: WarehouseDetailItem2Bindin
 
 
         val howMany = (pill.left!! / pill.amount!!).toInt()
-        val priceAll = pill.price!! * pill.amount
+        val priceAllBefore = pill.price!! * pill.amount
+        val priceAllAfter = String.format("%.2f", priceAllBefore).replace(",",".")
 
         binding.text12.text = "${pill.amount?.toInt()} op. po $howMany szt."
-        binding.text23.text = "${pill.price} zł/szt. łącznie: $priceAll zł"
+        binding.text23.text = "${pill.price} zł/szt. łącznie: $priceAllAfter zł"
+
+        Log.d("1", "WITOM CIE $priceAllBefore $priceAllAfter ")
 
 
         binding.apply {

@@ -18,8 +18,6 @@ import com.google.android.material.transition.MaterialSharedAxis
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import java.text.SimpleDateFormat
-import java.util.*
 
 
 class WarehouseFragment:Fragment() {
@@ -30,6 +28,7 @@ class WarehouseFragment:Fragment() {
     private var listOrganizer = mutableListOf<PillOrganizerManager>()
     private lateinit var adapter:WarehouseAdapter
     private lateinit var disposable: Disposable
+    private var firstTime= true
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,58 +56,11 @@ class WarehouseFragment:Fragment() {
         })
         binding.recycler.adapter = adapter
 
-        viewModel.checkIfNegativeDoseLeftNow()
 
+        if(firstTime) {
+            getPillsOrganizer()
+        }
 
-        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm")
-        val currentDate = sdf.format(Date())
-        val split = currentDate.split(' ')
-        val date = split.first()
-        val time = split.last()
-        
-
-        disposable = viewModel.getAllLeftDoseByIDS(date,time)
-            .subscribeOn(Schedulers.io())
-            .observeOn(Schedulers.io())
-            .subscribe { listDose ->
-                listDose.forEach { oneDose ->
-                    val dose = oneDose.dose.toInt()
-                    oneDose.amount?.let { amountDoseLeft ->
-                        viewModel.updatePillDoseLeftNow(oneDose.id, amountDoseLeft)
-                        oneDose.doseLeft?.let {amountDoseAll->
-                            viewModel.updateOrganizerPillDoseLeftNow(oneDose.id,amountDoseLeft*dose,amountDoseAll*dose)
-                        }
-                    }
-
-                    disposable = viewModel
-                        .getPillsOrganizer()
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe {
-                            listOrganizer.clear()
-                            val grouped = it.groupBy { item->item.pillId }
-
-                            grouped.forEach { (key, value) ->
-                                listOrganizer.add(PillOrganizerManager(key,value))
-                            }
-                            adapter.notifyDataSetChanged()
-                        }
-                }
-            }
-
-
-        viewModel.list.observe(viewLifecycleOwner, androidx.lifecycle.Observer {listNegativeAmount->
-
-            listNegativeAmount.forEach {oneOrganizer->
-
-                val id = oneOrganizer.id!!
-                val idPill = oneOrganizer.pillId
-                val amount = kotlin.math.abs(oneOrganizer.leftNow!!)
-
-                viewModel.updateOrganizerPillDoseLeftNowNegativeInOther(idPill,amount)
-                viewModel.markAsUsed(id)
-            }
-        })
 
         binding.floating.setOnClickListener {
             findNavController().navigate(R.id.action_warehouse_to_priceFragment)
@@ -118,9 +70,32 @@ class WarehouseFragment:Fragment() {
     }
 
 
+    private fun getPillsOrganizer(){
+
+        disposable = viewModel
+            .getPillsOrganizer()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                listOrganizer.clear()
+                val grouped = it.groupBy { item -> item.pillId }
+
+                grouped.forEach { (key, value) ->
+                    listOrganizer.add(PillOrganizerManager(key, value))
+                }
+                adapter.notifyDataSetChanged()
+            }
+    }
+
+
     override fun onPause() {
         super.onPause()
         if(!disposable.isDisposed)disposable.dispose()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        firstTime = false
     }
 
 }

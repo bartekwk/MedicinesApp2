@@ -7,10 +7,6 @@ import android.net.Uri
 import android.util.Log
 import androidx.datastore.DataStore
 import androidx.datastore.createDataStore
-import androidx.datastore.preferences.Preferences
-import androidx.datastore.preferences.createDataStore
-import androidx.datastore.preferences.edit
-import androidx.datastore.preferences.emptyPreferences
 import androidx.work.*
 import com.android.volley.Request
 import com.android.volley.Response
@@ -168,11 +164,12 @@ class AppRepository(private val pillDao: PillDao,
         users.document(id)
             .update("online",true,"lastActive",0)
             .await()
+
+        Log.d("1", "ABCD IN $id ")
     }
 
 
     suspend fun markAsOffline(){
-        Log.d("1", "ABCD OUT4 ")
         var id = auth.uid?:return
         if(id=="UlqT385yvlMH4aVPFdPigAYDg9I2"){
             id = "tu1vewS57OWGDhjoOJrv"
@@ -181,6 +178,7 @@ class AppRepository(private val pillDao: PillDao,
         users.document(id)
             .update("online",false,"lastActive",currentTimestamp)
             .await()
+        Log.d("1", "ABCD OUT4 $id ")
     }
 
     //--------
@@ -291,6 +289,16 @@ class AppRepository(private val pillDao: PillDao,
             .observeOn(AndroidSchedulers.mainThread())
     }
 
+    suspend fun getUserName(id:String): FriendAllFirebase? {
+
+        return fireStore
+            .collection("users")
+            .document(id)
+            .get()
+            .await()
+            .toObject(FriendAllFirebase::class.java)
+    }
+
 
     fun getFriendsSearch(query:String): Observable<UserBothChecked?> {
 
@@ -317,6 +325,8 @@ class AppRepository(private val pillDao: PillDao,
             .map{ it.toObject(UserBothChecked::class.java)}
             .observeOn(AndroidSchedulers.mainThread())
     }
+
+
 
 
 
@@ -379,6 +389,7 @@ class AppRepository(private val pillDao: PillDao,
         Log.d("1", "MAM END VIDEO-$id ")
         FirebaseMessaging.getInstance().unsubscribeFromTopic("VIDEO-$id")
     }
+
 
     suspend fun getUserByID(id:String): User? {
         val userSnapshot = users.document(id).get().await()
@@ -544,7 +555,7 @@ class AppRepository(private val pillDao: PillDao,
         return pillTimeDao.getPillsToChart(pillId,date,time)
     }
 
-    suspend fun getClosestPill(date:String):PillWorkManager{
+    suspend fun getClosestPill(date:String):PillWorkManager?{
         return pillTimeDao.getClosestPill(date)
     }
 
@@ -599,9 +610,8 @@ class AppRepository(private val pillDao: PillDao,
     }
 
 
-    fun getUserPrescription(user:String?): Observable<PillFirebase?> {
+    fun getUserPrescription(user:String): Observable<PillFirebase?> {
 
-        val user = "SLCUS8ov9eWuqtQfouEaa2TuItt2"
 
         return Observable.create<QuerySnapshot> { emitter ->
             fireStore.collection("users")
@@ -620,18 +630,8 @@ class AppRepository(private val pillDao: PillDao,
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    suspend fun getOneUserPrescription(user:String?,idOfPill:String): PillFirebase? {
+    suspend fun getOneUserPrescription(user:String,idOfPill:String): PillFirebase? {
 
-        val user = "SLCUS8ov9eWuqtQfouEaa2TuItt2"
-
-        val idOfPill = when(idOfPill){
-            "bartek-1606400466807"-> "6soX1hVCHz7Pnsv0NNU7"
-            "bartek-1606400506087"-> "B9LWPfYSsE8Ri39hURiU"
-            "bartek-1606400548719" -> "Q3yOBVv2LGJDKOwti1PR"
-            "bartek-1606400430521" -> "aHwa3g5irrKew0oE7Bvc"
-            "bartek-1606400350424" -> "gXM1JhYXjoExMqajkaCr"
-            else -> ""
-        }
 
         return fireStore
             .collection("users")
@@ -714,6 +714,13 @@ class AppRepository(private val pillDao: PillDao,
 
 
 
+    suspend fun restartUpdatePill():Int{
+        return pillDao.restartUpdatePill()
+    }
+
+    suspend fun restartOrganizer():Int{
+        return pillOrganizerDao.restartOrganizer()
+    }
 
 
     //---------- NOT YET DONE

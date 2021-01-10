@@ -89,12 +89,13 @@ class MyPillsFragment: Fragment() {
                         .flatMap { (category,pills)->
                             listOf<RecyclerItem2>(RecyclerItem2.Section(category,false))+ pills.map{RecyclerItem2.Pill(it)} }
 
-
-                    when(val first = result.first()){
-                        is RecyclerItem2.Section ->{
-                            first.isFirst = true
+                    if(result.isNotEmpty()) {
+                        when (val first = result.first()) {
+                            is RecyclerItem2.Section -> {
+                                first.isFirst = true
+                            }
+                            else -> Log.d("1", "Sth else ")
                         }
-                        else -> Log.d("1", "Sth else ")
                     }
 
                     pills.clear()

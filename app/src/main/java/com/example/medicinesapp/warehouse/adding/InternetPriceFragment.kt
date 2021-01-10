@@ -206,9 +206,8 @@ class InternetPriceFragment: Fragment(){
             medicineList2.forEach {fromInternet->
                 val organizerDb = viewModel.convertFromInternetToPillOrganizer(fromInternet)
                 viewModel.insertPillOrganizer(organizerDb)
-                findNavController().navigate(R.id.action_priceFragment_to_dashboard)
-                Log.d("1", " KLIKŁO $organizerDb ")
             }
+            findNavController().navigate(R.id.action_priceFragment_to_dashboard)
         }
         return binding.root
     }

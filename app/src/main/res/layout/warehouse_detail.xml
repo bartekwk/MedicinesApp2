@@ -119,8 +119,20 @@
             app:layout_constraintTop_toBottomOf="@id/recycler2"
             android:layout_width="match_parent"
             android:layout_height="230dp">
-
         </com.github.aachartmodel.aainfographics.aachartcreator.AAChartView>
+
+
+        <ImageView
+            android:id="@+id/change"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/chart"
+            app:layout_constraintEnd_toEndOf="@id/chart"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/ic_change"/>
 
         <LinearLayout
             android:translationY="-3dp"

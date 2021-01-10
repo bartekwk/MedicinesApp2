@@ -62,7 +62,6 @@
 
     <TextView
         android:layout_marginTop="30dp"
-        android:text="Bartek Wielek"
         android:fontFamily="@font/seguiemj"
         android:textColor="@color/white"
         android:textSize="35sp"

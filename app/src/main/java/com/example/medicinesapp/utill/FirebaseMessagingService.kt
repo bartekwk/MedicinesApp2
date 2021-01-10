@@ -1,5 +1,8 @@
 package com.example.medicinesapp.utill
 
+
+
+
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
@@ -9,13 +12,9 @@ import android.net.Uri
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
-import androidx.lifecycle.lifecycleScope
 import com.example.medicinesapp.R
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-
 
 class FirebaseMessagingService: FirebaseMessagingService() {
 
@@ -70,6 +69,5 @@ class FirebaseMessagingService: FirebaseMessagingService() {
 
         notificationManager.notify(0,notificationBuilder.build())
     }
-
 
 }

@@ -29,15 +29,11 @@ class InternetPriceViewModel (private val repository: AppRepository, private val
 
         price = fromInternet.price!!.replace(",",".").split(" ").first().toDouble()
 
-        val count = fromInternet.count.toDouble()
 
-        val resultDouble = price/count
+        val out = (price/fromInternet.count)
+        val out2 = String.format("%.2f", out).replace(",",".").toDouble()
 
-        val result = String.format("%.2f", resultDouble).replace(",",".").toDouble()
-
-        return PillOrganizerDB(null,fromInternet.idPill,fromInternet.picture,result,count,fromInternet.amount.toInt(),fromInternet.amount.toInt(),null,false,fromInternet.nameOfPill)
+        return PillOrganizerDB(null,fromInternet.idPill,fromInternet.picture,out2,fromInternet.count.toDouble(),fromInternet.amount.toInt(),fromInternet.amount.toInt(),null,false,fromInternet.nameOfPill)
     }
-
-
 
 }

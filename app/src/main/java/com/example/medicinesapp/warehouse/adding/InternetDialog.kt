@@ -17,7 +17,6 @@ import com.example.medicinesapp.data.FromInternet
 import com.example.medicinesapp.data.FromInternetWrapper
 import com.example.medicinesapp.data.PillDB
 import com.example.medicinesapp.databinding.InternetDialogBinding
-import com.example.medicinesapp.rxBus.MyRxBus
 import com.example.medicinesapp.rxBus.RxEvent
 import com.example.medicinesapp.utill.Helper
 import com.example.medicinesapp.utill.listeners.ViewPagerItemClickListener
@@ -167,8 +166,9 @@ class InternetDialog:DialogFragment() {
 
                lifecycleScope.launch {
 
-                   val amount = (pill.doseLeft!!.toDouble() *pill.amount).toInt()
                    val fromInternetList = mutableListOf<FromInternet>()
+
+                   val amount = (pill.doseLeft!! *pill.amount).toInt()
                    val pillOutside = FromInternetWrapper(id, fromInternetList,amount)
                    pillsOutside.add(pillOutside)
 
@@ -181,6 +181,7 @@ class InternetDialog:DialogFragment() {
            }
         }
     }
+
 
     override fun onDestroy() {
         super.onDestroy()

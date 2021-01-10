@@ -89,7 +89,7 @@
                         android:textColor="@color/black"
                         android:layout_marginStart="10dp"
                         android:textSize="14sp"
-                        android:text = "3"
+                        valueDoubleToString = "@{pill.amount}"
                         android:layout_height="wrap_content" />
 
                     <TextView

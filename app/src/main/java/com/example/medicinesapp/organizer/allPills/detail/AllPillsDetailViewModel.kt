@@ -5,9 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.medicinesapp.data.DailyPill
-import com.example.medicinesapp.data.PillDB
 import com.example.medicinesapp.data.PillFirebase
-import com.example.medicinesapp.data.PillOrganizerDB
 import com.example.medicinesapp.repository.AppRepository
 import io.reactivex.Observable
 import kotlinx.coroutines.launch
@@ -23,7 +21,7 @@ class AllPillsDetailViewModel(private val repository: AppRepository): ViewModel(
         return repository.getAllPillsByID(id)
     }
 
-    fun getOneUserPrescription(user:String?,idOfPill:String){
+    fun getOneUserPrescription(user:String,idOfPill:String){
         viewModelScope.launch {
             val result = repository.getOneUserPrescription(user,idOfPill)
             result?.let {
@@ -43,7 +41,4 @@ class AllPillsDetailViewModel(private val repository: AppRepository): ViewModel(
             repository.deleteMyDocument(pillDBID)
         }
     }
-
-
-
 }

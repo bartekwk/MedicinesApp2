@@ -10,5 +10,6 @@ data class PillChart(val count:Double,
                      val name:String,
                      val amount:Double,
                      val pillId:String,
-                     val doseLeftNow:Int?): Parcelable {
+                     val doseLeftNow:Int?,
+                     val doseLeft:Int): Parcelable {
 }

@@ -53,7 +53,10 @@ class InternetViewHolder3(private val binding: InternetPriceItem3Binding,private
                 binding.checked.alpha = 1.0f
                 val bundleAdd = bundleOf("add" to binding.info)
                 listener.onClickListener(bundleAdd)
+                Log.d("1", "COJEST CLICK T ${binding.info} ")
+
             }else{
+                Log.d("1", "COJEST CLICK N ${binding.info} ")
                 info!!.clicked = false
                 binding.checked.alpha = 0.0f
                 val bundleRemove = bundleOf("remove" to binding.info)
@@ -62,7 +65,9 @@ class InternetViewHolder3(private val binding: InternetPriceItem3Binding,private
         }
 
         binding.numberPicker.doOnProgressChanged { _, progress, _ ->
+
             info!!.count = progress
+            //info!!.amount = info!!.amount *progress.toDouble()
         }
     }
 
@@ -81,9 +86,9 @@ class InternetViewHolder3(private val binding: InternetPriceItem3Binding,private
          binding.checked.alpha =0.0f
      }
 
-
+        this.info = info
         val amountSentence = info.body!!.split(",").last()
-
+        val type = InternetViewHolder.decideWhatType(amountSentence)
         val amount = InternetViewHolder.calculateAmount(amountSentence)
         info.amount = amount
 
@@ -96,8 +101,11 @@ class InternetViewHolder3(private val binding: InternetPriceItem3Binding,private
         binding.amount.text = "$quantity sztuk"
 
         if(info.firstTime) {
+            //binding.numberPicker.progress = quantity
             info.firstTime = false
+            //info.amount = binding.numberPicker.progress.toDouble()
         }
+
 
         Log.d("1", "KURWA ${info.count}: ${info.body} ")
     }

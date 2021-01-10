@@ -23,18 +23,20 @@ class InternetDialogAdapter(private val recipeList:List<PillDB>): RecyclerView.A
         holder.bind(recipeList[position])
     }
 
+
     override fun getItemCount(): Int {
         return recipeList.size
     }
+
 }
 
 class InternetDialogViewHolder(private val binding: InternetDialogItemBinding): RecyclerView.ViewHolder(binding.root){
 
     fun bind(info: PillDB){
 
-        val sum = info.amount *info.doseLeft!!.toDouble()
+        val amount = info.amount * info.doseLeft!!
 
-        binding.sum.text = "$sum ${info.type}"
+        binding.all.text = "$amount ${info.type}"
 
         binding.run {
             this.pill = info

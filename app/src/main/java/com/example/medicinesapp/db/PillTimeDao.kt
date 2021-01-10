@@ -39,7 +39,7 @@ interface PillTimeDao {
     @Query("SELECT p2.id,date,time,name,description,type,amount,dayStart,dayEnd,doctor,NULL AS startHour,NULL AS period,NULL AS listHour FROM pills_time p1 INNER JOIN my_pills p2 ON p1.pillId = p2.id WHERE (p1.date = p2.dayStart) OR (p1.date = date(p2.dayStart,'+1 day'))")
     fun getPreviousPills(): Flow<List<PrevPill>>
 
-    @Query("SELECT COUNT(*) AS 'count',SUM(amount) AS 'sum',date,name,amount,pillId,doseLeft AS 'doseLeftNow' FROM pills_time pt JOIN my_pills mp ON pt.pillId = mp.id WHERE (pillId = :pillId) AND  ((date> :date) OR ((date = :date) AND  time> :time )) GROUP BY date,pillId")
+    @Query("SELECT COUNT(*) AS 'count',SUM(amount) AS 'sum',date,name,amount,pillId,doseLeftNow,doseLeft FROM pills_time pt JOIN my_pills mp ON pt.pillId = mp.id WHERE (pillId = :pillId) AND  ((date> :date) OR ((date = :date) AND  time> :time )) GROUP BY date,pillId")
     suspend fun getPillsToChart(pillId:String,date:String,time:String):List<PillChart>
 
     @Query("SELECT pt.id AS'id',name,description,doctor,date,time,amount FROM my_pills mp JOIN pills_time pt ON mp.id = pt.pillId WHERE (DATETIME(date || ' '|| time) > :date ) ORDER BY date,time LIMIT 1 ")

@@ -224,6 +224,9 @@
         <argument
             android:name="makeCall"
             app:argType="string"/>
+        <action
+            android:id="@+id/action_videoChat_to_dashboard"
+            app:destination="@id/dashboard" />
 
     </fragment>
 

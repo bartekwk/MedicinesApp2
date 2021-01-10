@@ -26,7 +26,7 @@ interface PillOrganizerDao {
 
     @Query("SELECT mp.id,mp.name,mp.description,mp.type,mp.doseLeft,mp.doseLeftNow,mp.dayStart,mp.dayEnd,mp.patient,mp.amount,mp.doctor,SUM(po.`left`) AS 'leftOrganizer',SUM(po.leftNow) AS 'leftNowOrganizer'" +
             "FROM my_pills mp LEFT JOIN pills_organizer po ON mp.id = po.pillId " +
-            "WHERE ((po.bought  IS NULL) OR (NOT  po.bought = 0)) AND (mp.id NOT LIKe 'null') " +
+            "WHERE ((po.bought IS NULL) OR (NOT  po.bought = 0)) AND (mp.id NOT LIKe 'null') " +
             "GROUP BY mp.id " +
             "UNION " +
             "SELECT mp.id,mp.name,mp.description,mp.type,mp.doseLeft,mp.doseLeftNow,mp.dayStart,mp.dayEnd,mp.patient,mp.amount,mp.doctor,0 AS 'leftOrganizer',0 AS 'leftNowOrganizer' " +
@@ -38,17 +38,19 @@ interface PillOrganizerDao {
     @Query("UPDATE pills_organizer SET leftNow = `left`-(:doseAll-:doseLeftNow) WHERE id =(SELECT id FROM pills_organizer WHERE (pillId = :id) AND (bought=1) AND ((leftNow IS NULL) OR (leftNow>=0) ) ORDER BY id LIMIT 1 ) ")
     suspend fun updateOrganizerPillDoseLeftNow(id:String,doseLeftNow:Int,doseAll:Int)
 
-    @Query("SELECT * FROM pills_organizer WHERE leftNow<0 AND inside IS NOT 'used' ")
+    @Query("SELECT * FROM pills_organizer WHERE leftNow < 0 AND inside IS NOT 'used' ")
     fun checkIfNegativeDoseLeftNow(): Flow<List<PillOrganizerDB>>
 
     @Query("UPDATE pills_organizer SET leftNow = `left`-:difference WHERE id =(SELECT id FROM pills_organizer WHERE (pillId = :idPill) AND (bought=1) AND ((leftNow IS NULL) OR (leftNow>=0) ) LIMIT 1 ) ")
     suspend fun updateOrganizerPillDoseLeftNowNegativeInOther(idPill:String,difference:Int)
 
-    @Query("UPDATE pills_organizer SET inside = 'used' WHERE id = :id ")
+    @Query("UPDATE pills_organizer SET inside = 'used',leftNow = -1000 WHERE id = :id ")
     suspend fun markAsUsed(id:Int)
 
     @Query("UPDATE pills_organizer SET bought =:bought WHERE id = :id")
     suspend fun markAsBoughtOrNot(id:Int,bought:Boolean)
 
+    @Query("UPDATE pills_organizer SET leftNow = `left`, inside = NULL")
+    suspend fun restartOrganizer():Int
 
 }

@@ -1,5 +1,6 @@
 package com.example.medicinesapp.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -47,27 +48,24 @@ class WarehouseViewHolder(private val binding: WarehouseItemBinding,private val 
     fun bind(pillOrganizer: PillOrganizerManager){
 
 
-        val notExpired = pillOrganizer.listPill.filter { it.inside !="used" && it.bought }
-        val toBuy = pillOrganizer.listPill.filter { !it.bought }
-
         var amountStart = 0
         var amountNow = 0
 
-        notExpired.forEach {pill->
-
-            amountStart+=pill.left!!
-            amountNow+=pill.leftNow!!
+        pillOrganizer.listPill.forEach {pill->
+            if(pill.bought) {
+                amountStart+=pill.left!!
+                if (pill.inside != "used") {
+                    amountNow+=pill.leftNow!!
+                }
+            }
         }
 
+        val progress = ((amountNow.toDouble() / amountStart.toDouble()) * 100).toInt()
+
+        Log.d("1", "KURWA $progress $amountNow $amountStart ${pillOrganizer.listPill[0].name}")
+
+        binding.progressTwo.progress =  progress
         binding.organizerText.text = "${amountNow}/${amountStart}"
-
-        if(amountStart!=0 && amountNow!=0 ) {
-            val result = (amountNow / amountStart) * 100
-            binding.progressTwo.progress = result
-        }
-        else{
-            binding.progressTwo.progress = 0
-        }
 
 
         binding.apply {

@@ -47,29 +47,31 @@ class DashboardFragment: Fragment() {
         })
 
         viewModel.markAsOnline()
-
         getClosestPill()
 
 
         viewModel.currentPill.observe(viewLifecycleOwner,Observer{
 
+            it?.let {
 
-            binding.name.text = it.name
-            binding.timeSingle.text = "${it.date} ${it.time}"
-            binding.single.text = it.amount.toString()
-            binding.additional.text = it.description
+                binding.name.text = it.name
+                binding.timeSingle.text = "${it.date} ${it.time}"
+                binding.single.text = it.amount.toString()
+                binding.additional.text = it.description
 
 
-            val formatString = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-            val fromDataBaseString = "${it.date} ${it.time}:00"
-            val fromDataBaseStringDate = formatString.parse(fromDataBaseString)!!.time
+                val formatString = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                val fromDataBaseString = "${it.date} ${it.time}:00"
+                val fromDataBaseStringDate = formatString.parse(fromDataBaseString)!!.time
 
-            val now = Calendar.getInstance()
-            val nowDate = now.time.time
+                val now = Calendar.getInstance()
+                val nowDate = now.time.time
 
-            val difference = fromDataBaseStringDate - nowDate
-            startTimer(difference)
+                val difference = fromDataBaseStringDate - nowDate
+                startTimer(difference)
+            }
         })
+
 
 
         viewModel.currentUser.observe(viewLifecycleOwner, Observer {
@@ -97,7 +99,6 @@ class DashboardFragment: Fragment() {
         }
 
         viewModel.subscribeToTopic()
-
 
         return binding.root
     }

@@ -16,7 +16,7 @@ data class PillFriendFirebase(
     val doctor:String?,
     var temp:String?,
     var day:String?,
-    var hour:String?): Parcelable {
+    var hour:String?,var amount:Double): Parcelable {
 
-    constructor() : this("", "", "", "", null, "", "", "", null, null, null,null)
+    constructor() : this("", "", "", "", null, "", "", "", null, null, null,null,0.0)
 }

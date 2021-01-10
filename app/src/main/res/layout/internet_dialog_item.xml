@@ -90,14 +90,14 @@
                 android:text="Łącznie dawek"/>
 
             <TextView
-                android:id="@+id/sum"
+                android:id="@+id/all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 app:layout_constraintTop_toTopOf="@id/namePill3"
                 app:layout_constraintBottom_toBottomOf="@id/namePill3"
                 app:layout_constraintStart_toEndOf="@id/namePill3"
-                android:layout_marginStart="26dp"/>
+                android:layout_marginStart="26dp" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

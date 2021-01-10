@@ -14,13 +14,14 @@ class DashboardViewModel(private val repository: AppRepository,private val app:A
     val currentUser: LiveData<User?>
         get()=_currentUser
 
-    private val _currentPill = MutableLiveData<PillWorkManager>()
-    val currentPill: LiveData<PillWorkManager>
+    private val _currentPill = MutableLiveData<PillWorkManager?>()
+    val currentPill: LiveData<PillWorkManager?>
         get()=_currentPill
 
     init{
         getCurrentUser()
     }
+
 
      fun getClosestPill(date:String){
          viewModelScope.launch {
@@ -35,16 +36,16 @@ class DashboardViewModel(private val repository: AppRepository,private val app:A
         }
     }
 
+
     fun subscribeToTopic(){
         repository.subscribeToTopic()
     }
+
 
     private fun getCurrentUser(){
         viewModelScope.launch {
             _currentUser.value = repository.getCurrentUser()
         }
     }
-
-
 
 }

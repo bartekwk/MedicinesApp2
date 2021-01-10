@@ -8,7 +8,6 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.*
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -16,7 +15,9 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.medicinesapp.R
 import com.example.medicinesapp.utill.Helper
 import io.skyway.Peer.*
@@ -26,13 +27,13 @@ import io.skyway.Peer.Browser.MediaStream
 import io.skyway.Peer.Browser.Navigator
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import org.json.JSONArray
-import java.util.ArrayList
+
+
 
 class VideoChatFragment: Fragment() {
 
-    private val apiKey = "71e9e570-b94d-445c-ae30-585c90596f80"
-    private val domain = "mymedicineapp"
+    private val apiKey = "b5057075-fcdc-4ce6-b9b1-8887dd7b4219"
+    private val domain = "medicineapp"
 
     private var peer: Peer?=null
     private  var localStream: MediaStream?=null
@@ -44,6 +45,8 @@ class VideoChatFragment: Fragment() {
     private lateinit var canvas: View
     private lateinit var canvas2: View
     private lateinit var switchCameraAction:ImageView
+    private lateinit var calling:ImageView
+    private lateinit var name:TextView
 
 
     private lateinit var handler: Handler
@@ -71,7 +74,10 @@ class VideoChatFragment: Fragment() {
 
         val callSb = arguments?.getString("makeCall")
 
-        val receiveCall = arguments?.getString("calling")
+        val receiveCallAll = arguments?.getString("calling")
+        val split = receiveCallAll?.split("&AND&")
+        val receiveCall = split?.first()
+        val firebaseID = split?.last()
 
         requireActivity().window.addFlags(Window.FEATURE_NO_TITLE)
 
@@ -91,6 +97,8 @@ class VideoChatFragment: Fragment() {
                 ownID?.let {
                     Log.d("1", "MAM W VIDEOCHATFRAGMENT $callSb AND $it ")
                     viewModel.notifyUser("VIDEO-$callSb",it)
+                    viewModel.getUserName(callSb)
+                    Log.d("1", "MOMY 1 $callSb ")
                 }
             }
 
@@ -98,6 +106,8 @@ class VideoChatFragment: Fragment() {
                 ownID?.let {
                     Log.d("1", "MAM KOŃCÓWA $receiveCall AND $it ")
                     lifecycleScope.launch {
+                        viewModel.getUserName(firebaseID!!)
+                        Log.d("1", "MOMY 1 $receiveCall ")
                         delay(1000)
                         handler.post {
                             it.run {
@@ -107,7 +117,6 @@ class VideoChatFragment: Fragment() {
                     }
                 }
             }
-
         }
 
         peer?.on(Peer.PeerEventEnum.ERROR){p0->
@@ -130,32 +139,27 @@ class VideoChatFragment: Fragment() {
                 setMediaCallbacks()
                 mediaConnection?.answer(localStream)
                 isConnected = true
+
+                Log.d("1", "MY TRES")
             }
         }
-
-        /*
-        btnAction.isEnabled = true
-        btnAction.setOnClickListener {
-            it.isEnabled = false
-            if(!isConnected){
-                //showPeerIDs()
-            }else{
-                closeRemoteStream()
-                mediaConnection?.close()
-            }
-            it.isEnabled = true
-        }
-
-         */
-
+        
         switchCameraAction.setOnClickListener {
 
             localStream?.let {
-                localStream?.let {
                     it.switchCamera()
-                }
             }
         }
+
+        calling.setOnClickListener {
+            destroyPeer()
+            findNavController().navigate(R.id.action_videoChat_to_dashboard)
+        }
+
+        viewModel.user.observe(viewLifecycleOwner, Observer {
+            Log.d("1", "MOMY 2 $it ")
+            name.text = it.name
+        })
 
         return view
     }
@@ -166,6 +170,8 @@ class VideoChatFragment: Fragment() {
         canvas = view.findViewById(R.id.canvas)
         canvas2 = view.findViewById(R.id.canvas2)
         switchCameraAction = view.findViewById(R.id.switchCameraAction)
+        calling = view.findViewById(R.id.calling)
+        name = view.findViewById(R.id.name)
     }
 
 
@@ -187,39 +193,6 @@ class VideoChatFragment: Fragment() {
     }
 
 
-    private fun showPeerIDs(it:String){
-
-        if(peer==null || ownID.isNullOrEmpty()){
-            Toast.makeText(requireContext(), "Peer Id zerowe ", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        peer?.listAllPeers(){result->
-
-            if(result is JSONArray) {
-
-                var peerId: String
-                val listPeerIds = ArrayList<String>()
-
-                for (i in 0..result.length()) {
-
-                    try {
-                        peerId = result.getString(i)
-                        if (!ownID.equals(peerId)) {
-                            listPeerIds.add(peerId)
-                        }
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
-                }
-
-                onPeerSelected(it)
-            }
-
-        }
-    }
-
-
     private fun onPeerSelected(peerID:String){
 
         if(peer!=null){
@@ -233,6 +206,7 @@ class VideoChatFragment: Fragment() {
 
             mediaConnection?.let {
                 setMediaCallbacks()
+                Log.d("1", "MY UNO ")
                 isConnected = true
             }
         }
@@ -249,8 +223,10 @@ class VideoChatFragment: Fragment() {
 
         mediaConnection?.on(MediaConnection.MediaEventEnum.CLOSE){
             isConnected = false
+            Log.d("1", "MY DOS ")
             closeRemoteStream()
-
+            destroyPeer()
+            findNavController().navigate(R.id.action_videoChat_to_dashboard)
         }
 
         mediaConnection?.on(MediaConnection.MediaEventEnum.ERROR){
