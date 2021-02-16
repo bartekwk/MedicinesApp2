@@ -57,7 +57,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:id="@+id/username"
-                        android:drawableEnd="@drawable/username_right"
+                        android:drawableEnd="@drawable/ic_end1"
                         android:fontFamily="@font/poppinsmedium" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -79,7 +79,7 @@
                         android:textSize="14sp"
                         android:inputType="textPassword"
                         android:id="@+id/password"
-                        android:drawableEnd="@drawable/password_right"
+                        android:drawableEnd="@drawable/ic_end2"
                         android:fontFamily="@font/poppinsmedium" />
                 </com.google.android.material.textfield.TextInputLayout>
 

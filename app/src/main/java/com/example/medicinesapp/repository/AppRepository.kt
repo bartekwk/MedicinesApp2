@@ -257,7 +257,7 @@ class AppRepository(private val pillDao: PillDao,
 
             val allow = transaction.get(pathCheckAllow).toObject(FriendIDFirebase::class.java)
 
-            var isAllow:Boolean = false
+            var isAllow = false
 
             allow?.let {
                 isAllow = it.see

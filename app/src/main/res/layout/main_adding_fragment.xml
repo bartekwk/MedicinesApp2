@@ -188,7 +188,7 @@
 
         <TextView
             android:id="@+id/cardView2text"
-            android:text="Godziny dawkowania"
+            android:text="Dni dawkowania"
             android:elevation="3dp"
             android:textColor="@color/white"
             android:alpha="0"
@@ -201,7 +201,7 @@
             android:layout_margin="10dp"/>
         <TextView
             android:id="@+id/cardView3text"
-            android:text="Dni dawkowania"
+            android:text="Godziny dawkowania"
             android:elevation="3dp"
             android:textColor="@color/white"
             android:alpha="0"

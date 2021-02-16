@@ -120,7 +120,6 @@ class FriendsFragment:Fragment() {
                     changeRecyclerViewDay(currentChoseDay,currentChoseId)
                 }
                 firstTime1=false
-
             }
         }
 

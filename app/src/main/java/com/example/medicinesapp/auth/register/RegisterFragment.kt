@@ -31,7 +31,6 @@ class RegisterFragment():Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel.deleteLater()
 
         binding = AuthRegisterBinding.inflate(inflater,container,false)
 
@@ -58,14 +57,14 @@ class RegisterFragment():Fragment() {
     private fun handleTypeChange(){
 
         when(binding.type.text){
-            "PATIENT" -> {
-                binding.type.text = "DOCTOR"
-                type = "DOCTOR"
+            "PACJENT" -> {
+                binding.type.text = "LEKARZ"
+                type = "LEKARZ"
                 binding.imageView.setImageResource(R.drawable.ic_undraw_doctors_hwty)
             }
-            "DOCTOR" -> {
-                binding.type.text = "PATIENT"
-                type="PATIENT"
+            "LEKARZ" -> {
+                binding.type.text = "PACJENT"
+                type="PACJENT"
                 binding.imageView.setImageResource(R.drawable.ic_undraw_doctor_kw5l)
             }
         }
@@ -86,7 +85,6 @@ class RegisterFragment():Fragment() {
     }
 
 
-    //THAT NEED TO BE CHANGED
 
     private fun performRegister() {
 
@@ -94,7 +92,7 @@ class RegisterFragment():Fragment() {
         val username = binding.username.text.toString()
         val password = binding.password.text.toString()
 
-        val isDoctor = type == "DOCTOR"
+        val isDoctor = type == "LEKARZ"
 
         if (name.isEmpty() || username.isEmpty() || password.isEmpty()) {
 

@@ -56,7 +56,6 @@ class WarehouseDetailViewHolder2(private val binding: WarehouseDetailItem2Bindin
         binding.text12.text = "${pill.amount?.toInt()} op. po $howMany szt."
         binding.text23.text = "${pill.price} zł/szt. łącznie: $priceAllAfter zł"
 
-        Log.d("1", "WITOM CIE $priceAllBefore $priceAllAfter ")
 
 
         binding.apply {

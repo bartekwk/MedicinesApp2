@@ -62,7 +62,6 @@ class WarehouseViewHolder(private val binding: WarehouseItemBinding,private val 
 
         val progress = ((amountNow.toDouble() / amountStart.toDouble()) * 100).toInt()
 
-        Log.d("1", "KURWA $progress $amountNow $amountStart ${pillOrganizer.listPill[0].name}")
 
         binding.progressTwo.progress =  progress
         binding.organizerText.text = "${amountNow}/${amountStart}"

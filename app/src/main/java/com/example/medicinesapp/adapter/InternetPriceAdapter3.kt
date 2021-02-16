@@ -106,8 +106,6 @@ class InternetViewHolder3(private val binding: InternetPriceItem3Binding,private
             //info.amount = binding.numberPicker.progress.toDouble()
         }
 
-
-        Log.d("1", "KURWA ${info.count}: ${info.body} ")
     }
 
 }

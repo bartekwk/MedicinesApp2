@@ -15,7 +15,7 @@ interface PillOrganizerDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPillOrganizer(pillOrganizerDB: PillOrganizerDB)
 
-    @Query("SELECT * FROM pills_organizer")
+    @Query("SELECT * FROM pills_organizer WHERE name NOT LIKE 'null' ")
     fun getPillsOrganizer(): Observable<List<PillOrganizerDB>>
 
     @Query("delete from pills_organizer where id=:id")

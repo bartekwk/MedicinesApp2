@@ -43,7 +43,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidth="2dp"
                     app:boxStrokeColor="@color/dark"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/name"
                         android:textSize="13sp"
-                        android:drawableEnd="@drawable/username_right"
+                        android:drawableEnd="@drawable/ic_end1"
                         android:fontFamily="@font/poppinsmedium" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -66,7 +66,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidth="2dp"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     app:boxStrokeColor="@color/dark"
                     android:layout_marginLeft="10dp"
@@ -80,7 +80,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="13sp"
                         android:id="@+id/username"
-                        android:drawableEnd="@drawable/password_right"
+                        android:drawableEnd="@drawable/ic_end2"
                         android:fontFamily="@font/poppinsmedium" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -88,7 +88,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidth="2dp"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     app:boxStrokeColor="@color/dark"
                     android:layout_marginLeft="10dp"
@@ -102,7 +102,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="13sp"
                         android:id="@+id/password"
-                        android:drawableEnd="@drawable/password_right"
+                        android:drawableEnd="@drawable/ic_end3"
                         android:fontFamily="@font/poppinsmedium" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -111,7 +111,6 @@
                     android:layout_width="match_parent"
                     android:layout_marginTop="10dp"
                     android:layout_height="wrap_content">
-
                     <TextView
                         android:layout_marginEnd="20dp"
                         android:layout_width="wrap_content"
@@ -125,8 +124,6 @@
                         android:fontFamily="@font/poppinsmedium"
                         android:text="Przejdź do logowania" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -194,7 +191,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:fontFamily="sans-serif-medium"
-                android:text="ACCOUNT TYPE : " />
+                android:text="TYP KONTA : " />
 
             <TextView
                 android:layout_marginStart="10dp"
@@ -207,7 +204,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="PATIENT"/>
+                android:text="PACJENT"/>
 
             <TextView
                 android:drawableRight="@drawable/ic_change"
